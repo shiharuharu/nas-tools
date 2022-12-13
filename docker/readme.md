@@ -16,11 +16,11 @@
 
 **注意**
 
-- 媒体目录的设置必须符合 [配置说明](https://github.com/jxxghp/nas-tools#%E9%85%8D%E7%BD%AE) 的要求。
+- 媒体目录的设置必须符合 [配置说明](https://github.com/shiharuharu/nas-tools#%E9%85%8D%E7%BD%AE) 的要求。
 
 - umask含义详见：http://www.01happy.com/linux-umask-analyze 。
 
-- 创建后请根据 [配置说明](https://github.com/jxxghp/nas-tools#%E9%85%8D%E7%BD%AE) 及该文件本身的注释，修改`config/config.yaml`，修改好后再重启容器，最后访问`http://<ip>:<web_port>`。
+- 创建后请根据 [配置说明](https://github.com/shiharuharu/nas-tools#%E9%85%8D%E7%BD%AE) 及该文件本身的注释，修改`config/config.yaml`，修改好后再重启容器，最后访问`http://<ip>:<web_port>`。
 
 **docker cli**
 
@@ -35,10 +35,10 @@ docker run -d \
     -e PGID=0     `# 想切换为哪个用户来运行程序，该用户的gid，详见下方说明` \
     -e UMASK=000  `# 掩码权限，默认000，可以考虑设置为022` \
     -e NASTOOL_AUTO_UPDATE=false `# 如需在启动容器时自动升级程程序请设置为true` \
-    jxxghp/nas-tools
+    shiharuharu/nas-tools
 ```
 
-如果你访问github的网络不太好，可以考虑在创建容器时增加设置一个环境变量`-e REPO_URL="https://ghproxy.com/https://github.com/jxxghp/nas-tools.git" \`。
+如果你访问github的网络不太好，可以考虑在创建容器时增加设置一个环境变量`-e REPO_URL="https://ghproxy.com/https://github.com/shiharuharu/nas-tools.git" \`。
 
 **docker-compose**
 
@@ -48,7 +48,7 @@ docker run -d \
 version: "3"
 services:
   nas-tools:
-    image: jxxghp/nas-tools:latest
+    image: shiharuharu/nas-tools:latest
     ports:
       - 3000:3000        # 默认的webui控制端口
     volumes:
@@ -59,7 +59,7 @@ services:
       - PGID=0    # 想切换为哪个用户来运行程序，该用户的gid
       - UMASK=000 # 掩码权限，默认000，可以考虑设置为022
       - NASTOOL_AUTO_UPDATE=false  # 如需在启动容器时自动升级程程序请设置为true
-     #- REPO_URL=https://ghproxy.com/https://github.com/jxxghp/nas-tools.git  # 当你访问github网络很差时，可以考虑解释本行注释
+     #- REPO_URL=https://ghproxy.com/https://github.com/shiharuharu/nas-tools.git  # 当你访问github网络很差时，可以考虑解释本行注释
     restart: always
     network_mode: bridge
     hostname: nas-tools
